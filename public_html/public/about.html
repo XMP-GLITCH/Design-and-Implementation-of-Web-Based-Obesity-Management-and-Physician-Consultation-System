@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kick Out Obesity - Medical Weight Management Platform</title>
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+                        /* Hamburger dropdown (mobile-nav) enhanced styling */
+                        .mobile-nav {
+                            display: none;
+                            position: absolute;
+                            top: 64px;
+                            right: 1rem;
+                            left: auto;
+                            background: #fff;
+                            box-shadow: 0 8px 32px rgba(16,185,129,0.18), 0 2px 8px rgba(6,182,212,0.10);
+                            border-radius: 16px;
+                            padding: 1.5rem 1.5rem 1.2rem 1.5rem;
+                            list-style: none;
+                            flex-direction: column;
+                            gap: 1.2rem;
+                            min-width: 180px;
+                            z-index: 110;
+                            border: 1.5px solid #e0f2f1;
+                            animation: fadeInUp 0.4s cubic-bezier(.39,.575,.56,1) both;
+                            transition: box-shadow 0.2s, border 0.2s;
+                        }
+                        .mobile-nav li {
+                            margin: 0;
+                        }
+                        .mobile-nav a {
+                            color: #10b981;
+                            font-weight: 600;
+                            text-decoration: none;
+                            padding: 0.7rem 1.2rem;
+                            border-radius: 8px;
+                            display: block;
+                            transition: background 0.18s, color 0.18s;
+                        }
+                        .mobile-nav a:hover, .mobile-nav .active {
+                            background: linear-gradient(90deg, #10b981 0%, #06b6d4 100%);
+                            color: #fff;
+                        }
+                .hamburger {
+                    display: none;
+                    flex-direction: column;
+                    justify-content: center;
+                    width: 40px;
+                    height: 40px;
+                    background: none;
+                    border: none;
+                    cursor: pointer;
+                    z-index: 120;
+                }
+                .hamburger span {
+                    display: block;
+                    height: 4px;
+                    width: 28px;
+                    background: #10b981;
+                    margin: 4px 0;
+                    border-radius: 2px;
+                    transition: all 0.3s;
+                }
+                .mobile-nav {
+                    display: none;
+                    position: absolute;
+                    top: 64px;
+                    right: 2rem;
+                    background: #fff;
+                    box-shadow: 0 4px 24px rgba(16,185,129,0.13);
+                    border-radius: 12px;
+                    padding: 1.5rem 2rem;
+                    list-style: none;
+                    flex-direction: column;
+                    gap: 1.2rem;
+                    min-width: 180px;
+                    z-index: 110;
+                    animation: fadeInUp 0.4s cubic-bezier(.39,.575,.56,1) both;
+                }
+                .mobile-nav.show {
+                    display: flex !important;
+                }
+        /* Responsive theme and animation overrides for about page */
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #f9fafb;
+            color: #222;
+        }
+        header {
+            background: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.07);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #10b981;
+        }
+        .logo img {
+            height: 40px;
+            margin-right: 0.5rem;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #222;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 0.25rem 0.5rem;
+            border-radius: 6px;
+        }
+        .nav-links a:hover, .nav-links .active {
+            color: #fff;
+            background: linear-gradient(90deg, #10b981 0%, #06b6d4 100%);
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        section {
+            padding: 4rem 2rem;
+        }
+        section:nth-child(even) {
+            background: #f9fafb;
+        }
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: #10b981;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .card {
+            background: white;
+            padding: 2rem;
+            border-radius: 18px;
+            box-shadow: 0 4px 32px rgba(16, 185, 129, 0.07), 0 1.5px 6px rgba(6, 182, 212, 0.04);
+            animation: fadeInUp 0.7s cubic-bezier(.39,.575,.56,1) both;
+        }
+        .card h3 {
+            color: #10b981;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+        .card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        .card li {
+            padding: 0.5rem 0 0.5rem 1.5rem;
+            position: relative;
+        }
+        .card li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #10b981;
+            font-weight: bold;
+        }
+        .process-steps {
+            counter-reset: step-counter;
+            list-style: none;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .process-steps li {
+            counter-increment: step-counter;
+            padding: 1rem 1rem 1rem 3.5rem;
+            position: relative;
+            margin-bottom: 1rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            animation: fadeInUp 0.7s cubic-bezier(.39,.575,.56,1) both;
+        }
+        .process-steps {
+            counter-reset: step-counter;
+            list-style: none;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .process-steps li {
+            counter-increment: step-counter;
+            padding: 1rem 1rem 1rem 3.5rem;
+            position: relative;
+            margin-bottom: 0;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            animation: fadeInUp 0.7s cubic-bezier(.39,.575,.56,1) both;
+            font-size: 1.08rem;
+            min-height: 3.2rem;
+            display: flex;
+            align-items: center;
+        }
+        .process-steps li:before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #10b981;
+            color: white;
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        .btn-primary {
+            background: white;
+            color: #10b981;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+        .btn-secondary:hover {
+            background: white;
+            color: #10b981;
+        }
+        footer {
+            background: #1f2937;
+            color: white;
+            padding: 3rem 2rem 1rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #10b981;
+        }
+        .footer-section ul {
+            list-style: none;
+        }
+        .footer-section a {
+            color: #d1d5db;
+            text-decoration: none;
+            display: block;
+            padding: 0.3rem 0;
+        }
+        .footer-section a:hover {
+            color: white;
+        }
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #374151;
+            color: #9ca3af;
+        }
+        @media (max-width: 1024px) {
+            nav {
+                padding: 1rem;
+            }
+            .container {
+                padding: 0 1rem;
+            }
+            section {
+                padding: 3rem 1rem;
+            }
+        }
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: row;
+                align-items: center;
+                padding: 1rem 0.5rem;
+                position: relative;
+            }
+            .logo {
+                font-size: 1.2rem;
+            }
+            .nav-links {
+                display: none !important;
+            }
+            .hamburger {
+                display: flex;
+            }
+            .mobile-nav {
+                display: none;
+                position: absolute;
+                top: 64px;
+                right: 0.5rem;
+                left: auto;
+            }
+            .mobile-nav.show {
+                display: flex !important;
+            }
+            .container {
+                padding: 0 0.5rem;
+            }
+            section {
+                padding: 2rem 0.5rem;
+            }
+            h2 {
+                font-size: 1.3rem;
+            }
+            .grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            .card {
+                padding: 1rem;
+                font-size: 1rem;
+            }
+            .process-steps {
+                gap: 0.7rem;
+            }
+            .process-steps li {
+                padding: 0.8rem 0.7rem 0.8rem 2.2rem;
+                font-size: 0.98rem;
+                min-height: 2.5rem;
+            }
+            .process-steps li:before {
+                width: 1.5rem;
+                height: 1.5rem;
+                font-size: 0.98rem;
+                left: 0.5rem;
+            }
+            .cta-section {
+                background: #fff;
+                border-radius: 18px;
+                box-shadow: 0 8px 32px rgba(16,185,129,0.13), 0 2px 8px rgba(6,182,212,0.10);
+                padding: 2.5rem 1.5rem 2.5rem 1.5rem;
+                margin: 3.5rem auto 2.5rem auto;
+                max-width: 700px;
+                text-align: center;
+            }
+            .cta-section .container {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                max-width: 700px;
+                margin-left: auto;
+                margin-right: auto;
+                width: auto;
+                align-items: center;
+                padding: 0;
+                gap: 2.2rem;
+                text-align: center;
+            }
+            .cta-section h2,
+            .cta-section p {
+                text-align: center !important;
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+                width: auto;
+            }
+            .cta-buttons {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                margin-left: auto;
+                margin-right: auto;
+                width: auto;
+                max-width: 700px;
+                gap: 2rem;
+            }
+            .cta-section h2 {
+                color: #10b981 !important;
+                font-size: 2rem;
+                font-weight: 700;
+                margin-bottom: 0.7rem;
+                letter-spacing: -1px;
+            }
+            .cta-section p {
+                color: #222;
+                font-size: 1.18rem;
+                margin-bottom: 2.2rem;
+            }
+            .cta-buttons {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                gap: 1.2rem;
+                flex-wrap: wrap;
+            }
+            .cta-buttons .btn {
+                min-width: 220px;
+                font-size: 1.18rem;
+                padding: 1.1rem 0.5rem;
+                border-radius: 12px;
+                box-shadow: 0 2px 12px rgba(16,185,129,0.10);
+                font-weight: 600;
+                transition: transform 0.13s, box-shadow 0.13s;
+            }
+            .cta-buttons .btn:active {
+                transform: scale(0.97);
+                box-shadow: 0 1px 4px rgba(16,185,129,0.10);
+            }
+            @media (max-width: 700px) {
+                .cta-section {
+                    padding: 1.5rem 0.5rem 1.5rem 0.5rem;
+                }
+                .cta-buttons {
+                    flex-direction: column;
+                    gap: 0.9rem;
+                }
+                .cta-buttons .btn {
+                    min-width: 0;
+                    width: 100%;
+                    font-size: 1.05rem;
+                }
+            }
+            footer {
+                padding: 2rem 0.5rem 1rem;
+            }
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+        }
+        @media (max-width: 480px) {
+            .logo img {
+                height: 28px;
+            }
+            .logo {
+                font-size: 1rem;
+            }
+            .nav-links {
+                font-size: 0.9rem;
+            }
+            h2 {
+                font-size: 1.1rem;
+            }
+            .card {
+                padding: 0.7rem;
+                font-size: 0.95rem;
+            }
+            .process-steps {
+                gap: 0.5rem;
+            }
+            .process-steps li {
+                padding: 0.6rem 0.5rem 0.6rem 1.5rem;
+                font-size: 0.91rem;
+                min-height: 2rem;
+            }
+            .process-steps li:before {
+                width: 1.1rem;
+                height: 1.1rem;
+                font-size: 0.85rem;
+                left: 0.2rem;
+            }
+        }
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Navigation -->
+    <header>
+        <nav>
+            <div class="logo"><img src="/Kick Out Obesity.png" alt="KickOut Obesity Logo">Kick Out Obesity</div>
+            <button class="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/glp1-education">GLP-1 Education</a></li>
+                <li><a href="/products">Products</a></li>
+                <li><a href="/about" class="active">About</a></li>
+            </ul>
+            <ul class="mobile-nav" id="mobile-nav" hidden>
+                <li><a href="/">Home</a></li>
+                <li><a href="/glp1-education">GLP-1 Education</a></li>
+                <li><a href="/products">Products</a></li>
+                <li><a href="/about" class="active">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- What is KickOutObesity Section -->
+    <section id="about">
+        <div class="container">
+            <h2>What is KickOutObesity?</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Medical Consultation Platform</h3>
+                    <p>Professional weight management platform designed to connect you with licensed physicians for personalized care.</p>
+                </div>
+                <div class="card">
+                    <h3>Educational Resource</h3>
+                    <p>Educational product display—no direct medication sales. We provide information to help you make informed decisions.</p>
+                </div>
+                <div class="card">
+                    <h3>Appointment-Based Care</h3>
+                    <p>Appointment-based physician communication ensuring you receive proper medical guidance throughout your journey.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How the Process Works -->
+    <section id="process">
+        <div class="container">
+            <h2>How the Process Works</h2>
+            <ol class="process-steps">
+                <li>Browse GLP-1 options</li>
+                <li>Submit consultation request</li>
+                <li>Complete medical intake form</li>
+                <li>Physician review</li>
+                <li>Consultation call</li>
+                <li>Prescription issued if approved</li>
+                <li>Clinic handles fulfillment</li>
+            </ol>
+        </div>
+    </section>
+
+    <!-- Medical Oversight -->
+    <section id="medical-oversight">
+        <div class="container">
+            <h2>Medical Oversight</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Licensed Physicians</h3>
+                    <ul>
+                        <li>Licensed physicians oversee all treatment</li>
+                        <li>Medical screening required</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Personalized Care</h3>
+                    <ul>
+                        <li>Dosage determined individually</li>
+                        <li>Ongoing physician evaluation available</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Privacy & Confidentiality -->
+    <section id="privacy">
+        <div class="container">
+            <h2>Privacy & Confidentiality</h2>
+            <div class="card" style="max-width: 800px; margin: 0 auto;">
+                <ul>
+                    <li>Secure intake system</li>
+                    <li>Patient data protected</li>
+                    <li>Private, confidential consultation environment</li>
+                    <li>HIPAA compliant process</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Treatment Philosophy -->
+    <section id="philosophy">
+        <div class="container">
+            <h2>Treatment Philosophy</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Medically Guided</h3>
+                    <p>Medically guided weight management with physician oversight every step of the way.</p>
+                </div>
+                <div class="card">
+                    <h3>Personalized Plans</h3>
+                    <p>Personalized treatment plans tailored to your unique health profile and goals.</p>
+                </div>
+                <div class="card">
+                    <h3>Lifestyle Focus</h3>
+                    <p>Lifestyle and long-term health focus for sustainable results.</p>
+                </div>
+                <div class="card">
+                    <h3>Safety First</h3>
+                    <p>Safety first approach ensuring your wellbeing is our top priority.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Who is This Service For -->
+    <section id="target-audience">
+        <div class="container">
+            <h2>Who is This Service For?</h2>
+            <div class="card" style="max-width: 600px; margin: 0 auto; text-align: center;">
+                <p style="font-size: 1.1rem;">Adults seeking physician-guided weight management with GLP-1 medications.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Kick Out Obesity</h3>
+                <p>Prescription-based weight management support through physician consultation.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Links</h3>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/glp1-education">GLP-1 Education</a></li>
+                    <li><a href="/products">Products</a></li>
+                    <li><a href="/about">About</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Socials</h3>
+                <ul>
+                    <li><a href="https://www.facebook.com/share/18HRaJGg5R/?mibextid=wwXIfr" aria-label="Facebook" style="display:flex;align-items:center;gap:0.5em;" target="_blank" rel="noopener">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                        <span class="sr-only">Facebook</span>
+                    </a></li>
+                    <li><a href="https://www.instagram.com/kick_out_obesity_26?igsh=M2dxMGUxM2xub2hr" aria-label="Instagram" style="display:flex;align-items:center;gap:0.5em;" target="_blank" rel="noopener">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><circle cx="17.5" cy="6.5" r="1"></circle></svg>
+                        <span class="sr-only">Instagram</span>
+                    </a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Kick Out Obesity. All rights reserved.</p>
+        </div>
+    </footer>
+<script>
+// Hamburger menu toggle
+const hamburger = document.querySelector('.hamburger');
+const mobileNav = document.getElementById('mobile-nav');
+if (hamburger && mobileNav) {
+    hamburger.addEventListener('click', function() {
+        const expanded = hamburger.getAttribute('aria-expanded') === 'true';
+        hamburger.setAttribute('aria-expanded', !expanded);
+        mobileNav.hidden = expanded;
+        mobileNav.classList.toggle('show', !expanded);
+    });
+    // Optional: close menu on link click
+    mobileNav.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            hamburger.setAttribute('aria-expanded', 'false');
+            mobileNav.hidden = true;
+            mobileNav.classList.remove('show');
+        });
+    });
+}
+</script>
+</body>
+</html>
+

@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products | Kick Out Obesity</title>
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container nav-content" style="position:relative;">
+            <div class="logo">
+                <img src="/Kick Out Obesity.png" alt="KickOut Obesity Logo">
+                <span class="brand-text">Kick Out Obesity</span>
+            </div>
+            <button class="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/glp1-education">GLP-1 Education</a></li>
+                <li><a class="nav-link-featured" href="/products">Products</a></li>
+                <li><a href="/about">About</a></li>
+            </ul>
+            <ul class="mobile-nav" id="mobile-nav" hidden>
+                <li><a href="/">Home</a></li>
+                <li><a href="/glp1-education">GLP-1 Education</a></li>
+                <li><a href="/products">Products</a></li>
+                <li><a href="/about">About</a></li>
+            </ul>
+        </div>
+        <style>
+            .hamburger {
+                display: none;
+                flex-direction: column;
+                justify-content: center;
+                width: 40px;
+                height: 40px;
+                background: none;
+                border: none;
+                cursor: pointer;
+                z-index: 120;
+            }
+            .hamburger span {
+                display: block;
+                height: 4px;
+                width: 28px;
+                background: #10b981;
+                margin: 4px 0;
+                border-radius: 2px;
+                transition: all 0.3s;
+            }
+            .mobile-nav {
+                display: none;
+                position: absolute;
+                top: 64px;
+                right: 1rem;
+                left: auto;
+                background: #fff;
+                box-shadow: 0 8px 32px rgba(16,185,129,0.18), 0 2px 8px rgba(6,182,212,0.10);
+                border-radius: 16px;
+                padding: 1.5rem 1.5rem 1.2rem 1.5rem;
+                list-style: none;
+                flex-direction: column;
+                gap: 1.2rem;
+                min-width: 180px;
+                z-index: 110;
+                border: 1.5px solid #e0f2f1;
+                animation: fadeInUp 0.4s cubic-bezier(.39,.575,.56,1) both;
+                transition: box-shadow 0.2s, border 0.2s;
+            }
+            .mobile-nav li {
+                margin: 0;
+            }
+            .mobile-nav a {
+                color: #10b981;
+                font-weight: 600;
+                text-decoration: none;
+                padding: 0.7rem 1.2rem;
+                border-radius: 8px;
+                display: block;
+                transition: background 0.18s, color 0.18s;
+            }
+            .mobile-nav a:hover, .mobile-nav .active {
+                background: linear-gradient(90deg, #10b981 0%, #06b6d4 100%);
+                color: #fff;
+            }
+            @media (max-width: 900px) {
+                .nav-links {
+                    display: none !important;
+                }
+                .hamburger {
+                    display: flex;
+                }
+                .mobile-nav {
+                    display: none;
+                    position: absolute;
+                    top: 64px;
+                    right: 0.5rem;
+                    left: auto;
+                }
+                .mobile-nav.show {
+                    display: flex !important;
+                }
+            }
+        </style>
+    </nav>
+
+
+    <main>
+        <section id="catalog" class="catalog">
+            <div class="container">
+                <h2 class="section-title">Medication catalog</h2>
+                <p class="section-subtitle">
+                    Select a medication and a variation to see the patient price. Then tap <strong>Get Now</strong> to start the intake process.
+                </p>
+
+                <div class="catalog-grid">
+                    <!-- Semaglutide -->
+                    <article class="product-card" data-product="semaglutide">
+                        <div class="product-head">
+                            <img src="Semaglutide.png" alt="Semaglutide" class="product-image" style="width:120px;height:auto;margin-bottom:12px;">
+                            <div class="product-badges">
+                                <span class="badge badge-primary">Prescription-only</span>
+                                <span class="badge badge-soft">Once weekly</span>
+                            </div>
+                            <h3 class="product-title">Semaglutide</h3>
+                            <p class="product-subtitle">GLP‑1 analog • Appetite support • Weekly injection</p>
+                        </div>
+
+                        <div class="product-body">
+                            <div class="variation">
+                                <div class="variation-label">Choose a variation</div>
+                                <div class="variation-grid" role="radiogroup" aria-label="Semaglutide variations">
+                                    <label class="variation-option">
+                                        <input type="radio" name="sema-var" value="0.5" checked>
+                                        <div class="variation-card">
+                                            <div class="variation-top">
+                                                <span class="variation-name">0.5 mL vial</span>
+                                                <span class="variation-price" data-price="$125">$125</span>
+                                            </div>
+                                            <div class="variation-meta">Patient price</div>
+                                        </div>
+                                    </label>
+                                    <label class="variation-option">
+                                        <input type="radio" name="sema-var" value="1">
+                                        <div class="variation-card">
+                                            <div class="variation-top">
+                                                <span class="variation-name">1 mL vial</span>
+                                                <span class="variation-price" data-price="$175">$175</span>
+                                            </div>
+                                            <div class="variation-meta">Patient price</div>
+                                        </div>
+                                    </label>
+                                    <label class="variation-option">
+                                        <input type="radio" name="sema-var" value="2">
+                                        <div class="variation-card">
+                                            <div class="variation-top">
+                                                <span class="variation-name">2 mL vial</span>
+                                                <span class="variation-price" data-price="$225">$225</span>
+                                            </div>
+                                            <div class="variation-meta">Patient price</div>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="product-summary">
+                                <div>
+                                    <div class="summary-label">Selected variation</div>
+                                    <div class="summary-value" data-selected-variation>0.5 mL vial</div>
+                                </div>
+                                <div class="summary-price">
+                                    <div class="summary-label">Patient price</div>
+                                    <div class="summary-value price" data-selected-price>$125</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="product-foot">
+                            <button class="btn btn-primary product-cta" data-open-intake>Get Now</button>
+                            <a class="btn btn-tertiary" href="/glp1-education">Learn more</a>
+                        </div>
+                    </article>
+
+                    <!-- Tirzepatide -->
+                    <article class="product-card" data-product="tirzepatide">
+                        <div class="product-head">
+                            <img src="Tirzepatide.png" alt="Tirzepatide" class="product-image" style="width:120px;height:auto;margin-bottom:12px;">
+                            <div class="product-badges">
+                                <span class="badge badge-primary">Prescription-only</span>
+                                <span class="badge badge-soft">GLP‑1 + GIP</span>
+                            </div>
+                            <h3 class="product-title">Tirzepatide</h3>
+                            <p class="product-subtitle">Dual receptor therapy • Weekly injection</p>
+                        </div>
+
+                        <div class="product-body">
+                            <div class="variation">
+                                <div class="variation-label">Choose a variation</div>
+                                <div class="variation-grid" role="radiogroup" aria-label="Tirzepatide variations">
+                                    <label class="variation-option">
+                                        <input type="radio" name="tirz-var" value="1" checked>
+                                        <div class="variation-card">
+                                            <div class="variation-top">
+                                                <span class="variation-name">1 × 1 mL</span>
+                                                <span class="variation-price" data-price="$120">$120</span>
+                                            </div>
+                                            <div class="variation-meta">Patient price</div>
+                                        </div>
+                                    </label>
+                                    <label class="variation-option">
+                                        <input type="radio" name="tirz-var" value="2">
+                                        <div class="variation-card">
+                                            <div class="variation-top">
+                                                <span class="variation-name">1 × 2 mL</span>
+                                                <span class="variation-price" data-price="$225">$225</span>
+                                            </div>
+                                            <div class="variation-meta">Patient price</div>
+                                        </div>
+                                    </label>
+                                    <label class="variation-option">
+                                        <input type="radio" name="tirz-var" value="3">
+                                        <div class="variation-card">
+                                            <div class="variation-top">
+                                                <span class="variation-name">1 × 3 mL</span>
+                                                <span class="variation-price" data-price="$295">$295</span>
+                                            </div>
+                                            <div class="variation-meta">Patient price</div>
+                                        </div>
+                                    </label>
+                                    <label class="variation-option">
+                                        <input type="radio" name="tirz-var" value="4">
+                                        <div class="variation-card">
+                                            <div class="variation-top">
+                                                <span class="variation-name">1 × 4 mL</span>
+                                                <span class="variation-price" data-price="$385">$385</span>
+                                            </div>
+                                            <div class="variation-meta">Patient price</div>
+                                        </div>
+                                    </label>
+                                    <label class="variation-option">
+                                        <input type="radio" name="tirz-var" value="6">
+                                        <div class="variation-card">
+                                            <div class="variation-top">
+                                                <span class="variation-name">2 × 3 mL (6 mL)</span>
+                                                <span class="variation-price" data-price="$585">$585</span>
+                                            </div>
+                                            <div class="variation-meta">Patient price</div>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="product-summary">
+                                <div>
+                                    <div class="summary-label">Selected variation</div>
+                                    <div class="summary-value" data-selected-variation>1 × 1 mL</div>
+                                </div>
+                                <div class="summary-price">
+                                    <div class="summary-label">Patient price</div>
+                                    <div class="summary-value price" data-selected-price>$120</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="product-foot">
+                            <button class="btn btn-primary product-cta" data-open-intake>Get Now</button>
+                            <a class="btn btn-tertiary" href="/glp1-education">Learn more</a>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="catalog-note">
+                    <div class="catalog-note-icon">🛡️</div>
+                    <div>
+                        <div class="catalog-note-title">Prescription-only</div>
+                        <p class="catalog-note-text">
+                            You’re requesting a physician consultation. Medication is not purchased on this website.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Intake modal (frontend-only) -->
+    <div class="modal" id="intakeModal" aria-hidden="true">
+        <div class="modal-backdrop" data-close-modal></div>
+        <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="intakeTitle">
+            <div class="modal-head">
+                <div>
+                    <div class="modal-kicker">Consultation request</div>
+                    <h2 class="modal-title" id="intakeTitle">Patient intake</h2>
+                </div>
+                <button class="icon-btn" type="button" aria-label="Close" data-close-modal>
+                    <span aria-hidden="true">✕</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <div class="intake-steps" aria-label="Intake steps">
+                    <div class="intake-step is-active" data-step-indicator="1">1</div>
+                    <div class="intake-step" data-step-indicator="2">2</div>
+                    <div class="intake-step" data-step-indicator="3">3</div>
+                </div>
+
+                <!-- Step 1: intake info -->
+                <form id="intakeForm">
+                    <section class="intake-panel" data-step="1">
+                        <div class="intake-selected">
+                            <div class="intake-selected-title">Selected</div>
+                            <div class="intake-selected-values">
+                                <div><span class="muted">Medication:</span> <strong data-intake-med>—</strong></div>
+                                <div><span class="muted">Variation:</span> <strong data-intake-var>—</strong></div>
+                                <div><span class="muted">Patient price:</span> <strong data-intake-price>—</strong></div>
+                            </div>
+                        </div>
+
+                        <div class="field-grid">
+                            <div class="field">
+                                <label for="fullName">Full name</label>
+                                <input id="fullName" name="fullName" type="text" autocomplete="name" required>
+                            </div>
+                            <div class="field">
+                                <label for="email">Email</label>
+                                <input id="email" name="email" type="email" autocomplete="email" required>
+                            </div>
+                            <div class="field">
+                                <label for="phone">Phone</label>
+                                <input id="phone" name="phone" type="tel" autocomplete="tel" required>
+                            </div>
+                            <div class="field">
+                                <label for="address">Address</label>
+                                <input id="address" name="address" type="text" autocomplete="street-address" required>
+                            </div>
+                            <div class="field">
+                                <label for="state">State</label>
+                                <select id="state" name="state" required>
+                                    <option value="">Select a state</option>
+                                    <option value="AL">Alabama</option>
+                                    <option value="AK">Alaska</option>
+                                    <option value="AZ">Arizona</option>
+                                    <option value="AR">Arkansas</option>
+                                    <option value="CA">California</option>
+                                    <option value="CO">Colorado</option>
+                                    <option value="CT">Connecticut</option>
+                                    <option value="DE">Delaware</option>
+                                    <option value="FL">Florida</option>
+                                    <option value="GA">Georgia</option>
+                                    <option value="HI">Hawaii</option>
+                                    <option value="ID">Idaho</option>
+                                    <option value="IL">Illinois</option>
+                                    <option value="IN">Indiana</option>
+                                    <option value="IA">Iowa</option>
+                                    <option value="KS">Kansas</option>
+                                    <option value="KY">Kentucky</option>
+                                    <option value="LA">Louisiana</option>
+                                    <option value="ME">Maine</option>
+                                    <option value="MD">Maryland</option>
+                                    <option value="MA">Massachusetts</option>
+                                    <option value="MI">Michigan</option>
+                                    <option value="MN">Minnesota</option>
+                                    <option value="MS">Mississippi</option>
+                                    <option value="MO">Missouri</option>
+                                    <option value="MT">Montana</option>
+                                    <option value="NE">Nebraska</option>
+                                    <option value="NV">Nevada</option>
+                                    <option value="NH">New Hampshire</option>
+                                    <option value="NJ">New Jersey</option>
+                                    <option value="NM">New Mexico</option>
+                                    <option value="NY">New York</option>
+                                    <option value="NC">North Carolina</option>
+                                    <option value="ND">North Dakota</option>
+                                    <option value="OH">Ohio</option>
+                                    <option value="OK">Oklahoma</option>
+                                    <option value="OR">Oregon</option>
+                                    <option value="PA">Pennsylvania</option>
+                                    <option value="RI">Rhode Island</option>
+                                    <option value="SC">South Carolina</option>
+                                    <option value="SD">South Dakota</option>
+                                    <option value="TN">Tennessee</option>
+                                    <option value="TX">Texas</option>
+                                    <option value="UT">Utah</option>
+                                    <option value="VT">Vermont</option>
+                                    <option value="VA">Virginia</option>
+                                    <option value="WA">Washington</option>
+                                    <option value="WV">West Virginia</option>
+                                    <option value="WI">Wisconsin</option>
+                                    <option value="WY">Wyoming</option>
+                                </select>
+                            </div>
+                            <div class="field">
+                                <label for="city">City</label>
+                                <select id="city" name="city" required disabled>
+                                    <option value="">Select state first</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="modal-actions">
+                            <button class="btn btn-primary" type="button" data-next-step>Continue</button>
+                        </div>
+                    </section>
+
+                    <!-- Step 2: call preference -->
+                    <section class="intake-panel" data-step="2" hidden>
+                        <h3 class="panel-title">Call preference</h3>
+                        <p class="panel-subtitle">Choose how you’d like to complete the consultation.</p>
+
+                        <div class="choice-grid" role="radiogroup" aria-label="Call preference">
+                            <label class="choice-card">
+                                <input type="radio" name="callPreference" value="wait" checked>
+                                <div class="choice-body">
+                                    <div class="choice-title">Wait for a physician call</div>
+                                    <div class="choice-desc">We’ll reach out using the contact details you provided.</div>
+                                </div>
+                            </label>
+                            <label class="choice-card">
+                                <input type="radio" name="callPreference" value="schedule">
+                                <div class="choice-body">
+                                    <div class="choice-title">Schedule a call</div>
+                                    <div class="choice-desc">Pick a date and time that works for you.</div>
+                                </div>
+                            </label>
+                        </div>
+
+                        <div class="field-grid schedule-fields" data-schedule-fields hidden>
+                            <div class="field">
+                                <label for="callDate">Date</label>
+                                <input id="callDate" name="callDate" type="date">
+                            </div>
+                            <div class="field">
+                                <label for="callTime">Time</label>
+                                <input id="callTime" name="callTime" type="time">
+                            </div>
+                        </div>
+
+                        <div class="modal-actions">
+                            <button class="btn btn-tertiary" type="button" data-prev-step>Back</button>
+                            <button class="btn btn-primary" type="button" data-next-step>Review</button>
+                        </div>
+                    </section>
+
+                    <!-- Step 3: review -->
+                    <section class="intake-panel" data-step="3" hidden>
+                        <h3 class="panel-title">Review & confirm</h3>
+                        <p class="panel-subtitle">Confirm your details before submitting.</p>
+
+                        <div class="review-grid">
+                            <div class="review-item">
+                                <div class="review-label">Patient</div>
+                                <div class="review-value" data-review-name>—</div>
+                                <div class="review-sub" data-review-email>—</div>
+                                <div class="review-sub" data-review-phone>—</div>
+                            </div>
+                            <div class="review-item">
+                                <div class="review-label">Address</div>
+                                <div class="review-value" data-review-address>—</div>
+                            </div>
+                            <div class="review-item">
+                                <div class="review-label">Medication</div>
+                                <div class="review-value" data-review-med>—</div>
+                                <div class="review-sub" data-review-var>—</div>
+                                <div class="review-sub" data-review-price>—</div>
+                            </div>
+                            <div class="review-item">
+                                <div class="review-label">Call preference</div>
+                                <div class="review-value" data-review-pref>—</div>
+                                <div class="review-sub" data-review-schedule>—</div>
+                            </div>
+                        </div>
+
+                        <div class="modal-actions">
+                            <button class="btn btn-tertiary" type="button" data-prev-step>Back</button>
+                            <button class="btn btn-primary" type="submit">Submit request</button>
+                        </div>
+
+                        <p class="tiny-note">
+                            Submitting will create an intake receipt for the physician.
+                        </p>
+                    </section>
+                </form>
+
+                <section class="intake-success" hidden>
+                    <div class="success-icon">✅</div>
+                    <h3 class="panel-title">Request received</h3>
+                    <p class="panel-subtitle">We’ll follow up using your chosen call preference.</p>
+                    <p style="margin-top: 15px; font-size: 0.9rem; color: #666;">
+                        <strong>Intake ID:</strong> <span data-intake-id>—</span>
+                    </p>
+                    <div class="modal-actions">
+                        <button class="btn btn-primary" type="button" data-close-modal>Close</button>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <img src="/Kick Out Obesity.png" alt="KickOut Obesity Logo">
+                        <span class="brand-text">Kick Out Obesity</span>
+                    </div>
+                    <p class="footer-tagline">
+                        Prescription-based weight management support through physician consultation.
+                    </p>
+                </div>
+                <div class="footer-col">
+                    <h3 class="footer-heading">Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/glp1-education">GLP-1 Education</a></li>
+                        <li><a href="/products">Products</a></li>
+                        <li><a href="/about">About</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3 class="footer-heading">Socials</h3>
+                    <div class="socials">
+                            <a class="social-link" href="https://www.instagram.com/kick_out_obesity_26?igsh=M2dxMGUxM2xub2hr" aria-label="Instagram" target="_blank" rel="noopener">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <rect x="3" y="3" width="18" height="18" rx="5" ry="5"></rect>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                <path d="M17.5 6.5h.01"></path>
+                            </svg>
+                        </a>
+                            <a class="social-link" href="https://www.facebook.com/share/18HRaJGg5R/?mibextid=wwXIfr" aria-label="Facebook" target="_blank" rel="noopener">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Kick Out Obesity. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/script.js"></script>
+    <script>
+    // Hamburger menu toggle
+    const hamburger = document.querySelector('.hamburger');
+    const mobileNav = document.getElementById('mobile-nav');
+    if (hamburger && mobileNav) {
+        hamburger.addEventListener('click', function() {
+            const expanded = hamburger.getAttribute('aria-expanded') === 'true';
+            hamburger.setAttribute('aria-expanded', !expanded);
+            mobileNav.hidden = expanded;
+            mobileNav.classList.toggle('show', !expanded);
+        });
+        // Optional: close menu on link click
+        mobileNav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.setAttribute('aria-expanded', 'false');
+                mobileNav.hidden = true;
+                mobileNav.classList.remove('show');
+            });
+        });
+    }
+    </script>
+</body>
+</html>
+
