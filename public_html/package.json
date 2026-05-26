@@ -1,7 +1,7 @@
 {
-  "name": "kickoutobesity-backend",
+  "name": "obesitycare-cameroon-backend",
   "version": "1.0.0",
-  "description": "Backend API for KickOutObesity consultation platform",
+  "description": "Backend API for ObesityCare Cameroon consultation platform",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",

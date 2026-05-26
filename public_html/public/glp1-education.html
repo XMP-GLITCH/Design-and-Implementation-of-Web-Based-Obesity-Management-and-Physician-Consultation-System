@@ -13,8 +13,8 @@
         </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GLP-1 Education | Kick Out Obesity</title>
-        <link rel="icon" type="image/png" href="/Kick Out Obesity.png">
+    <title>GLP-1 Education | ObesityCare Cameroon</title>
+        <link rel="icon" type="image/png" href="/obesitycare_logo.png">
     <link rel="stylesheet" href="/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,8 +25,8 @@
     <nav class="navbar">
         <div class="container nav-content" style="position:relative;">
             <div class="logo">
-                <img src="/Kick Out Obesity.png" alt="KickOut Obesity Logo">
-                <span class="brand-text">Kick Out Obesity</span>
+                <img src="/obesitycare_logo.png" alt="ObesityCare Logo">
+                <span class="brand-text">ObesityCare Cameroon</span>
             </div>
             <button class="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
                 <span></span><span></span><span></span>
@@ -60,7 +60,7 @@
                 display: block;
                 height: 4px;
                 width: 28px;
-                background: #10b981;
+                background: var(--primary-teal);
                 margin: 4px 0;
                 border-radius: 2px;
                 transition: all 0.3s;
@@ -72,7 +72,7 @@
                 right: 1rem;
                 left: auto;
                 background: #fff;
-                box-shadow: 0 8px 32px rgba(16,185,129,0.18), 0 2px 8px rgba(6,182,212,0.10);
+                box-shadow: 0 8px 32px rgba(0,122,94,0.18), 0 2px 8px rgba(206,17,38,0.10);
                 border-radius: 16px;
                 padding: 1.5rem 1.5rem 1.2rem 1.5rem;
                 list-style: none;
@@ -88,7 +88,7 @@
                 margin: 0;
             }
             .mobile-nav a {
-                color: #10b981;
+                color: var(--primary-teal);
                 font-weight: 600;
                 text-decoration: none;
                 padding: 0.7rem 1.2rem;
@@ -97,7 +97,7 @@
                 transition: background 0.18s, color 0.18s;
             }
             .mobile-nav a:hover, .mobile-nav .active {
-                background: linear-gradient(90deg, #10b981 0%, #06b6d4 100%);
+                background: var(--bg-gradient);
                 color: #fff;
             }
             @media (max-width: 900px) {
@@ -156,7 +156,7 @@
             </div>
         </div>
     </header>
-    <script src="public/script.js"></script>
+
     <!-- Education content -->
     <main>
         <section class="edu-section">
@@ -293,6 +293,34 @@
                     </article>
                 </div>
 
+                <!-- GLP-1 & Cameroonian Diet Section -->
+                <section class="diet-section" style="background: var(--bg-light); border: 1.5px solid #e0f2f1; padding: 2rem; border-radius: 18px; margin: 2rem 0; text-align: left;">
+                    <h3 style="color: var(--primary-teal); font-size: 1.4rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">🍲 GLP-1 & Cameroonian Diet / Lifestyle</h3>
+                    <p style="font-size: 1rem; line-height: 1.6; color: var(--text-dark); margin-bottom: 1.2rem;">
+                        Since GLP-1 therapies slow down stomach digestion and reduce hunger, eating large quantities of heavy traditional meals can cause severe discomfort (bloating, nausea, or reflux). Adjusting how you consume standard Cameroonian staples is highly recommended:
+                    </p>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                        <div>
+                            <h4 style="color: var(--primary-teal); font-size: 1.1rem; margin-bottom: 0.5rem;">Lighten Heavy Staples</h4>
+                            <p style="font-size: 0.9rem; line-height: 1.5; color: var(--text-light);">
+                                Traditional starch bases like <strong>Waterfufu</strong>, <strong>Corn fufu</strong>, and <strong>Garri</strong> are highly compact. Reduce portion sizes to about 1/3 of your previous norm, and focus on slow, deliberate chewing to prevent early bloating.
+                            </p>
+                        </div>
+                        <div>
+                            <h4 style="color: var(--primary-teal); font-size: 1.1rem; margin-bottom: 0.5rem;">Prioritize Fiber & Lean Proteins</h4>
+                            <p style="font-size: 0.9rem; line-height: 1.5; color: var(--text-light);">
+                                Select nutritious local dishes like <strong>Ndole</strong> (minimize added cooking oils/peanuts), <strong>Eru</strong> (cook with less palm oil), and grilled fish (mackerel/bar) rather than fried alternatives to keep protein intake up.
+                            </p>
+                        </div>
+                        <div>
+                            <h4 style="color: var(--primary-teal); font-size: 1.1rem; margin-bottom: 0.5rem;">Climate Hydration</h4>
+                            <p style="font-size: 0.9rem; line-height: 1.5; color: var(--text-light);">
+                                Given Cameroon's warm climate, stay well hydrated by drinking water throughout the day. This helps offset mild dehydration risks and supports digestion on GLP-1 medications.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
                 <div class="edu-disclaimer">
                     <div class="edu-disclaimer-icon">ℹ️</div>
                     <div>
@@ -313,8 +341,8 @@
             <div class="footer-grid">
                 <div class="footer-brand">
                     <div class="footer-logo">
-                        <img src="Kick Out Obesity.png" alt="KickOut Obesity Logo">
-                        <span class="brand-text">Kick Out Obesity</span>
+                        <img src="/obesitycare_logo.png" alt="ObesityCare Logo">
+                        <span class="brand-text">ObesityCare Cameroon</span>
                     </div>
                     <p class="footer-tagline">
                         Prescription-based weight management support through physician consultation.
@@ -351,7 +379,7 @@
             </div>
 
             <div class="footer-bottom">
-                <p>&copy; 2026 Kick Out Obesity. All rights reserved.</p>
+                <p>&copy; 2026 ObesityCare Cameroon. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -378,6 +406,10 @@
         });
     }
     </script>
+    <!-- Floating WhatsApp Widget -->
+    <a href="https://wa.me/237677123456?text=Hello%20ObesityCare%20Cameroon%2C%20I%20have%20some%20questions%20about%20your%20weight%20management%20options." class="whatsapp-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+        <svg viewBox="0 0 24 24"><path d="M12.012 2c-5.506 0-9.989 4.478-9.99 9.984a9.96 9.96 0 0 0 1.333 4.993L2 22l5.13-1.347a9.96 9.96 0 0 0 4.88 1.277h.005c5.505 0 9.988-4.478 9.99-9.985A9.97 9.97 0 0 0 12.012 2zm5.718 13.962c-.313.88-1.57 1.705-2.28 1.77-.61.056-1.127.357-3.83-.733a11.89 11.89 0 0 1-5.114-4.5A5.47 5.47 0 0 1 5.3 9.2c.023-1.42.766-2.127 1.047-2.413.282-.285.626-.357.834-.357h.656c.21 0 .49.078.76.733.282.68.96 2.336 1.043 2.505.083.17.14.367.02.585-.11.23-.172.35-.34.545-.17.195-.36.438-.515.585-.17.17-.35.35-.15.69.2.337.887 1.463 1.9 2.368a8.2 8.2 0 0 0 2.76 1.7c.338.16.545.13.746-.1.202-.23.883-1.03.112-1.63-.53-.41-.955-.308-1.595-.125-.13.036-.26.07-.39.1-.53.13-1.07.26-1.57-.08a4.4 4.4 0 0 1-1.63-1.03c-.93-.8-1.5-1.78-1.66-2.2-.17-.4-.02-.6.18-.8.18-.18.4-.47.6-.7.2-.23.27-.38.4-.65a1.14 1.14 0 0 0-.06-1.08c-.08-.17-.76-1.836-1.044-2.527-.278-.675-.547-.58-.75-.59H9.4c-.2 0-.53.07-.8.37A3.2 3.2 0 0 0 7.5 10c0 1.25.56 2.45.83 2.8.27.35 2.1 3.2 5.1 4.5.71.3 1.27.49 1.7.63a4.13 4.13 0 0 0 1.9.12c.587-.088 1.802-.736 2.053-1.455.25-.72.25-1.336.175-1.466-.075-.13-.275-.21-.58-.366z"/></svg>
+    </a>
 </body>
 </html>
 

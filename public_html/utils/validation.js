@@ -20,14 +20,14 @@ function validateIntakeData(data) {
     errors.push('Valid email is required');
   }
 
-  // Phone validation - accepts formats like: 5551234567, (555)123-4567, 555-123-4567, +1-555-123-4567
+  // Phone validation - accepts Cameroon local format (9 digits) and international (+237) format
   if (!data.phone || typeof data.phone !== 'string') {
     errors.push('Phone number is required');
   } else {
-    // Remove common formatting characters and check if we have at least 10 digits
+    // Remove common formatting characters and check if we have 9-15 digits
     const digitsOnly = data.phone.replace(/\D/g, '');
-    if (digitsOnly.length < 10 || digitsOnly.length > 15) {
-      errors.push('Phone number must contain 10-15 digits');
+    if (digitsOnly.length < 9 || digitsOnly.length > 15) {
+      errors.push('Phone number must contain 9-15 digits');
     }
   }
 
@@ -38,11 +38,11 @@ function validateIntakeData(data) {
     errors.push('Address must be at least 5 characters');
   }
 
-  // State validation
+  // Region validation
   if (!data.state || typeof data.state !== 'string') {
-    errors.push('State is required');
+    errors.push('Region is required');
   } else if (data.state.length !== 2) {
-    errors.push('State must be a valid 2-letter code');
+    errors.push('Region must be a valid 2-letter code');
   }
 
   // City validation

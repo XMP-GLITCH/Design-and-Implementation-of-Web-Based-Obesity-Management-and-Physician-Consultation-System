@@ -10,17 +10,17 @@
         {
           "id": "sema_05",
           "amount": "0.5 mL vial",
-          "price": "$125"
+          "price": "75 000 FCFA"
         },
         {
           "id": "sema_1",
           "amount": "1 mL vial",
-          "price": "$175"
+          "price": "105 000 FCFA"
         },
         {
           "id": "sema_2",
           "amount": "2 mL vial",
-          "price": "$225"
+          "price": "135 000 FCFA"
         }
       ]
     },
@@ -34,27 +34,27 @@
         {
           "id": "tirz_1",
           "amount": "1 × 1 mL",
-          "price": "$120"
+          "price": "72 000 FCFA"
         },
         {
           "id": "tirz_2",
           "amount": "1 × 2 mL",
-          "price": "$225"
+          "price": "135 000 FCFA"
         },
         {
           "id": "tirz_3",
           "amount": "1 × 3 mL",
-          "price": "$295"
+          "price": "177 000 FCFA"
         },
         {
           "id": "tirz_4",
           "amount": "1 × 4 mL",
-          "price": "$385"
+          "price": "231 000 FCFA"
         },
         {
           "id": "tirz_6",
           "amount": "2 × 3 mL (6 mL)",
-          "price": "$585"
+          "price": "351 000 FCFA"
         }
       ]
     }

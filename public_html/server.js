@@ -3,6 +3,7 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 const intakeRoutes = require('./routes/intake');
+const configRoutes = require('./routes/config');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -38,6 +39,7 @@ app.get('/health', (req, res) => {
 
 // API routes
 app.use('/api/intake', intakeRoutes);
+app.use('/api/config', configRoutes);
 
 // 404 handler
 app.use((req, res) => {

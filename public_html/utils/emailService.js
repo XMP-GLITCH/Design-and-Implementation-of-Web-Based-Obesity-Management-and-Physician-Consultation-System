@@ -63,7 +63,7 @@ async function sendPhysicianEmail(intakeData) {
   try {
     if (emailService.type === 'resend') {
       const result = await emailService.client.emails.send({
-        from: process.env.FROM_EMAIL || 'noreply@kickoutobesity.com',
+        from: process.env.FROM_EMAIL || 'noreply@obesitycare.cm',
         to: physicianEmail,
         subject: `New Patient Intake Request - ${intakeData.fullName}`,
         html: emailContent
@@ -71,7 +71,7 @@ async function sendPhysicianEmail(intakeData) {
       return result;
     } else {
       const result = await emailService.transporter.sendMail({
-        from: process.env.FROM_EMAIL || 'noreply@kickoutobesity.com',
+        from: process.env.FROM_EMAIL || 'noreply@obesitycare.cm',
         to: physicianEmail,
         subject: `New Patient Intake Request - ${intakeData.fullName}`,
         html: emailContent
@@ -99,7 +99,7 @@ async function sendPatientConfirmationEmail(intakeData) {
   try {
     if (emailService.type === 'resend') {
       const result = await emailService.client.emails.send({
-        from: process.env.FROM_EMAIL || 'noreply@kickoutobesity.com',
+        from: process.env.FROM_EMAIL || 'noreply@obesitycare.cm',
         to: intakeData.email,
         subject: 'Your Consultation Request Has Been Received',
         html: emailContent
@@ -107,7 +107,7 @@ async function sendPatientConfirmationEmail(intakeData) {
       return result;
     } else {
       const result = await emailService.transporter.sendMail({
-        from: process.env.FROM_EMAIL || 'noreply@kickoutobesity.com',
+        from: process.env.FROM_EMAIL || 'noreply@obesitycare.cm',
         to: intakeData.email,
         subject: 'Your Consultation Request Has Been Received',
         html: emailContent
@@ -129,7 +129,7 @@ function generateIntakeEmail(data) {
   const appointmentInfo = data.callPreference === 'schedule'
     ? `<p><strong>Appointment Date:</strong> ${data.callDate}</p>
        <p><strong>Appointment Time:</strong> ${data.callTime}</p>`
-    : '<p><em>Patient requested to wait for physician call.</em></p>';
+    : '<p><em>Patient requested to wait for physician call / WhatsApp.</em></p>';
 
   return `
     <!DOCTYPE html>
@@ -138,8 +138,8 @@ function generateIntakeEmail(data) {
       <style>
         body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
         .container { max-width: 600px; margin: 0 auto; padding: 20px; }
-        .header { background: linear-gradient(135deg, #2dd4bf 0%, #10b981 100%); color: white; padding: 20px; border-radius: 8px; }
-        .section { margin: 20px 0; padding: 15px; background: #f9fafb; border-left: 4px solid #2dd4bf; }
+        .header { background: linear-gradient(135deg, #007A5E 0%, #CE1126 50%, #FCD116 100%); color: white; padding: 20px; border-radius: 8px; }
+        .section { margin: 20px 0; padding: 15px; background: #f9fafb; border-left: 4px solid #007A5E; }
         .label { font-weight: bold; color: #1f2937; }
         hr { border: none; border-top: 1px solid #e5e7eb; }
       </style>
@@ -148,7 +148,7 @@ function generateIntakeEmail(data) {
       <div class="container">
         <div class="header">
           <h1>New Patient Intake Request</h1>
-          <p>Consultation booking received via KickOutObesity.com</p>
+          <p>Consultation booking received via ObesityCare Cameroon</p>
         </div>
 
         <div class="section">
@@ -159,7 +159,7 @@ function generateIntakeEmail(data) {
           <hr>
           <p><span class="label">Address:</span> ${data.address}</p>
           <p><span class="label">City:</span> ${data.city}</p>
-          <p><span class="label">State:</span> ${data.state}</p>
+          <p><span class="label">Region:</span> ${data.state}</p>
         </div>
 
         <div class="section">
@@ -170,17 +170,17 @@ function generateIntakeEmail(data) {
         </div>
 
         <div class="section">
-          <h2>Call Preference</h2>
+          <h2>Consultation Preference</h2>
           ${appointmentInfo}
         </div>
 
-        <div class="section" style="background: #f0fdfa; border-left-color: #06b6d4;">
+        <div class="section" style="background: #f0fdfa; border-left-color: #007A5E;">
           <p><small><strong>Note:</strong> This is an automated intake receipt. Patient details are ready for physician review and follow-up consultation.</small></p>
         </div>
 
         <hr>
         <p style="text-align: center; color: #6b7280; font-size: 12px;">
-          KickOutObesity.com | Prescription-based weight management consultation platform
+          ObesityCare Cameroon | Web-Based Obesity Management & Physician Consultation System
         </p>
       </div>
     </body>
@@ -201,8 +201,8 @@ function generateConfirmationEmail(data) {
       <style>
         body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
         .container { max-width: 600px; margin: 0 auto; padding: 20px; }
-        .header { background: linear-gradient(135deg, #2dd4bf 0%, #10b981 100%); color: white; padding: 20px; border-radius: 8px; }
-        .section { margin: 20px 0; padding: 15px; background: #f9fafb; border-left: 4px solid #2dd4bf; }
+        .header { background: linear-gradient(135deg, #007A5E 0%, #CE1126 50%, #FCD116 100%); color: white; padding: 20px; border-radius: 8px; }
+        .section { margin: 20px 0; padding: 15px; background: #f9fafb; border-left: 4px solid #007A5E; }
         .label { font-weight: bold; color: #1f2937; }
       </style>
     </head>
@@ -215,8 +215,8 @@ function generateConfirmationEmail(data) {
 
         <div class="section">
           <h2>What Happens Next</h2>
-          <p>Our physician will review your consultation request and reach out to you shortly using the phone number you provided.</p>
-          <p>During your consultation call, the physician will:</p>
+          <p>Our physician will review your consultation request and reach out to you shortly via Phone call or WhatsApp using the contact number you provided.</p>
+          <p>During your consultation call / WhatsApp connection, the physician will:</p>
           <ul>
             <li>Review your medical history</li>
             <li>Discuss your treatment goals</li>
@@ -234,12 +234,12 @@ function generateConfirmationEmail(data) {
 
         <div class="section">
           <h2>Contact Information</h2>
-          <p>Please keep ${data.phone} available. We'll call at the time you specified in your request.</p>
+          <p>Please keep ${data.phone} available. We'll reach out on Phone or WhatsApp at the time you specified in your request.</p>
         </div>
 
         <hr>
         <p style="text-align: center; color: #6b7280; font-size: 12px;">
-          KickOutObesity.com | Prescription-based weight management consultation platform
+          ObesityCare Cameroon | Web-Based Obesity Management & Physician Consultation System
         </p>
       </div>
     </body>

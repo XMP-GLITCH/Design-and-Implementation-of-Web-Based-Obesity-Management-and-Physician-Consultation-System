@@ -1,5 +1,23 @@
 // Smooth scrolling for navigation links
 document.addEventListener('DOMContentLoaded', function() {
+        let whatsappNumber = '237677123456';
+        
+        // Fetch dynamic config from backend
+        fetch('/api/config')
+            .then(res => res.json())
+            .then(data => {
+                if (data.whatsappNumber) {
+                    whatsappNumber = data.whatsappNumber;
+                    // Dynamically update any floating WhatsApp links
+                    const floatLinks = document.querySelectorAll('.whatsapp-float');
+                    floatLinks.forEach(link => {
+                        const text = "Hello ObesityCare Cameroon, I have some questions about your weight management options.";
+                        link.href = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(text)}`;
+                    });
+                }
+            })
+            .catch(err => console.warn('Could not load dynamic configuration:', err));
+
         // Intake form: show schedule fields only if 'schedule' is selected
         // Schedule fields logic: hide unless 'schedule' is selected
         const scheduleFields = document.querySelector('[data-schedule-fields]');
@@ -133,6 +151,7 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
 
+        // === INTAKE FORM VALIDATION & SUBMISSION START ===
         // Intake modal logic
         const modal = document.getElementById('intakeModal');
         const closeEls = document.querySelectorAll('[data-close-modal]');
@@ -142,58 +161,17 @@ document.addEventListener('DOMContentLoaded', function() {
         const successPanel = modal ? modal.querySelector('.intake-success') : null;
         const indicators = modal ? Array.from(modal.querySelectorAll('[data-step-indicator]')) : [];
 
-        // State/City mapping for US locations
         const stateCities = {
-            'AL': ['Birmingham', 'Montgomery', 'Mobile', 'Huntsville', 'Madison'],
-            'AK': ['Anchorage', 'Juneau', 'Fairbanks', 'Ketchikan'],
-            'AZ': ['Phoenix', 'Mesa', 'Scottsdale', 'Glendale', 'Tucson', 'Chandler'],
-            'AR': ['Little Rock', 'Fayetteville', 'Fort Smith', 'Springdale', 'Jonesboro'],
-            'CA': ['Los Angeles', 'San Francisco', 'San Diego', 'Sacramento', 'San Jose', 'Fresno', 'Long Beach', 'Oakland', 'Anaheim'],
-            'CO': ['Denver', 'Colorado Springs', 'Aurora', 'Fort Collins', 'Lakewood'],
-            'CT': ['Hartford', 'New Haven', 'Bridgeport', 'Stamford', 'Waterbury'],
-            'DE': ['Wilmington', 'Dover', 'Newark', 'Middletown'],
-            'FL': ['Miami', 'Tampa', 'Orlando', 'Jacksonville', 'Fort Lauderdale', 'Tallahassee', 'Cape Coral', 'Miami Beach'],
-            'GA': ['Atlanta', 'Augusta', 'Savannah', 'Athens', 'Macon', 'Columbus'],
-            'HI': ['Honolulu', 'Hilo', 'Kailua', 'Kaneohe', 'Pearl City'],
-            'ID': ['Boise', 'Nampa', 'Pocatello', 'Idaho Falls', 'Coeur d\'Alene'],
-            'IL': ['Chicago', 'Aurora', 'Rockford', 'Joliet', 'Springfield', 'Naperville'],
-            'IN': ['Indianapolis', 'Fort Wayne', 'Evansville', 'South Bend', 'Bloomington'],
-            'IA': ['Des Moines', 'Cedar Rapids', 'Davenport', 'Sioux City', 'Iowa City'],
-            'KS': ['Kansas City', 'Wichita', 'Topeka', 'Lawrence', 'Overland Park'],
-            'KY': ['Louisville', 'Lexington', 'Bowling Green', 'Covington', 'Owensboro'],
-            'LA': ['New Orleans', 'Baton Rouge', 'Shreveport', 'Lafayette', 'Lake Charles'],
-            'ME': ['Portland', 'Lewiston', 'Bangor', 'Augusta', 'South Portland'],
-            'MD': ['Baltimore', 'Frederick', 'Gaithersburg', 'Bowie', 'Annapolis'],
-            'MA': ['Boston', 'Worcester', 'Springfield', 'Cambridge', 'Lowell'],
-            'MI': ['Detroit', 'Grand Rapids', 'Warren', 'Sterling Heights', 'Ann Arbor'],
-            'MN': ['Minneapolis', 'St. Paul', 'Rochester', 'Duluth', 'Bloomington'],
-            'MS': ['Jackson', 'Gulfport', 'Biloxi', 'Hattiesburg', 'Meridian'],
-            'MO': ['Kansas City', 'St. Louis', 'Springfield', 'Columbia', 'Independence'],
-            'MT': ['Missoula', 'Great Falls', 'Billings', 'Bozeman', 'Helena'],
-            'NE': ['Omaha', 'Lincoln', 'Bellevue', 'Grand Island', 'Kearney'],
-            'NV': ['Las Vegas', 'Henderson', 'Reno', 'North Las Vegas', 'Paradise'],
-            'NH': ['Manchester', 'Nashua', 'Concord', 'Derry', 'Portsmouth'],
-            'NJ': ['Newark', 'Jersey City', 'Paterson', 'Elizabeth', 'Trenton'],
-            'NM': ['Albuquerque', 'Las Cruces', 'Santa Fe', 'Rio Rancho', 'Roswell'],
-            'NY': ['New York', 'Buffalo', 'Rochester', 'Yonkers', 'Albany', 'Syracuse'],
-            'NC': ['Charlotte', 'Raleigh', 'Greensboro', 'Durham', 'Winston-Salem'],
-            'ND': ['Bismarck', 'Fargo', 'Grand Forks', 'Minot', 'Williston'],
-            'OH': ['Columbus', 'Cleveland', 'Cincinnati', 'Toledo', 'Akron'],
-            'OK': ['Oklahoma City', 'Tulsa', 'Norman', 'Broken Arrow', 'Edmond'],
-            'OR': ['Portland', 'Eugene', 'Salem', 'Gresham', 'Hillsboro'],
-            'PA': ['Philadelphia', 'Pittsburgh', 'Allentown', 'Erie', 'Reading'],
-            'RI': ['Providence', 'Warwick', 'Cranston', 'Pawtucket', 'Woonsocket'],
-            'SC': ['Charleston', 'Columbia', 'Greenville', 'Spartanburg', 'Myrtle Beach'],
-            'SD': ['Sioux Falls', 'Rapid City', 'Aberdeen', 'Watertown', 'Brookings'],
-            'TN': ['Nashville', 'Memphis', 'Knoxville', 'Chattanooga', 'Clarksville'],
-            'TX': ['Houston', 'Dallas', 'Austin', 'San Antonio', 'Fort Worth', 'El Paso', 'Arlington'],
-            'UT': ['Salt Lake City', 'West Valley City', 'Provo', 'Ogden', 'Sandy'],
-            'VT': ['Burlington', 'Rutland', 'Montpelier', 'Barre', 'South Burlington'],
-            'VA': ['Virginia Beach', 'Richmond', 'Arlington', 'Alexandria', 'Roanoke'],
-            'WA': ['Seattle', 'Spokane', 'Tacoma', 'Vancouver', 'Bellevue'],
-            'WV': ['Charleston', 'Huntington', 'Parkersburg', 'Morgantown', 'Wheeling'],
-            'WI': ['Milwaukee', 'Madison', 'Green Bay', 'Kenosha', 'Racine'],
-            'WY': ['Cheyenne', 'Laramie', 'Gillette', 'Rock Springs', 'Casper']
+            'AD': ['Ngaoundéré', 'Banyo', 'Tibati', 'Meiganga'],
+            'EN': ['Maroua', 'Kousséri', 'Mokolo', 'Yagoua'],
+            'ES': ['Bertoua', 'Batouri', 'Abong-Mbang', 'Yokadouma'],
+            'CE': ['Yaoundé', 'Mbalmayo', 'Obala', 'Bafia', 'Eseka'],
+            'LT': ['Douala', 'Edéa', 'Nkongsamba', 'Mbanga'],
+            'NO': ['Garoua', 'Guider', 'Rey Bouba'],
+            'NW': ['Bamenda', 'Wum', 'Kumbo', 'Fundong'],
+            'OU': ['Bafoussam', 'Dschang', 'Foumban', 'Mbouda', 'Bafang', 'Bangangté'],
+            'SU': ['Ebolowa', 'Kribi', 'Sangmélima', 'Ambam'],
+            'SW': ['Buea', 'Limbe', 'Kumba', 'Mamfe', 'Tiko']
         };
 
         // Handle state/city dropdown population
@@ -296,6 +274,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && modal?.getAttribute('aria-hidden') === 'false') closeModal();
         });
+        // === INTAKE FORM VALIDATION & SUBMISSION END ===
 
         openButtons.forEach((btn) => {
             btn.addEventListener('click', () => {
@@ -329,7 +308,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                     const pref = form.callPreference.value;
                     modal.querySelector('[data-review-pref]').textContent =
-                        pref === 'schedule' ? 'Scheduled call' : 'Wait for physician call';
+                        pref === 'schedule' ? 'Scheduled Phone / WhatsApp call' : 'Wait for physician call / WhatsApp message';
                     const scheduleLine =
                         pref === 'schedule' && (form.callDate.value || form.callTime.value)
                             ? `${form.callDate.value || ''} ${form.callTime.value || ''}`.trim()
@@ -397,6 +376,22 @@ document.addEventListener('DOMContentLoaded', function() {
                         const intakeIdEl = successPanel.querySelector('[data-intake-id]');
                         if (intakeIdEl) {
                             intakeIdEl.textContent = result.intakeId;
+                        }
+
+                        // Set up the dynamic WhatsApp CTA button
+                        const waContainer = successPanel.querySelector('#whatsapp-cta-container');
+                        const waBtn = successPanel.querySelector('#whatsapp-cta-btn');
+                        if (waContainer && waBtn) {
+                            const patientName = intakeData.fullName || 'Patient';
+                            const med = intakeData.medication || 'GLP-1';
+                            const dose = intakeData.dosage || '';
+                            const pref = intakeData.callPreference === 'schedule' ? 'Scheduled' : 'Callback';
+                            
+                            // Construct localized WhatsApp text
+                            const waText = `Hello ObesityCare Cameroon! My name is ${patientName}. I just submitted my intake form (Intake ID: ${result.intakeId || ''}) for ${med} ${dose}. I preferred a ${pref} consultation. Please let me know when we can review my details. Thank you!`;
+                            
+                            waBtn.href = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(waText)}`;
+                            waContainer.hidden = false; // Show the WhatsApp button container!
                         }
                     }
                     indicators.forEach((el) => el.classList.remove('is-active'));

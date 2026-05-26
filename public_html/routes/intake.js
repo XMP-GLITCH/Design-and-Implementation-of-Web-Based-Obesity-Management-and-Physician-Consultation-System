@@ -1,8 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const { validateIntakeData, sanitizeData } = require('../utils/validation');
-const { sendPhysicianEmail, sendPatientConfirmationEmail, initializeEmailService } = require('../utils/emailService');
+// Email service is disabled. Strictly using WhatsApp.
 
+// === INTAKE FORM BACKEND ROUTE START ===
 /**
  * POST /api/intake
  * Receive patient intake form submission
@@ -26,8 +27,7 @@ router.post('/', async (req, res) => {
     // Step 2: Sanitize data to prevent XSS
     const sanitizedData = sanitizeData(req.body);
 
-    // Step 3: Initialize email service (idempotent - only initializes once)
-    initializeEmailService();
+    // Step 3: Initialize email service (Bypassed - strictly using WhatsApp)
 
     // Step 4: Build intake record
     const intakeRecord = {
@@ -93,21 +93,7 @@ router.post('/', async (req, res) => {
       }
     }
 
-    // Step 6: Send email to physician
-    try {
-      await sendPhysicianEmail(sanitizedData);
-      console.log(`✅ Physician email sent for intake ${intakeRecord.id}`);
-    } catch (emailError) {
-      console.error(`⚠️  Failed to send physician email: ${emailError.message}`);
-    }
-
-    // Step 7: Send confirmation email to patient
-    try {
-      await sendPatientConfirmationEmail(sanitizedData);
-      console.log(`✅ Patient confirmation email sent to ${sanitizedData.email}`);
-    } catch (emailError) {
-      console.error(`⚠️  Failed to send patient confirmation email: ${emailError.message}`);
-    }
+    // Steps 6 & 7: Email dispatch bypassed (strictly using WhatsApp)
 
     // Step 8: Return success response
     return res.status(201).json({
@@ -115,7 +101,7 @@ router.post('/', async (req, res) => {
       message: 'Intake request received successfully',
       intakeId: intakeRecord.id,
       timestamp: intakeRecord.timestamp,
-      nextSteps: 'A physician will contact you to confirm your consultation at the phone number you provided.'
+      nextSteps: 'Please complete your consultation via WhatsApp using the button on screen.'
     });
 
   } catch (error) {
@@ -129,7 +115,9 @@ router.post('/', async (req, res) => {
     });
   }
 });
+// === INTAKE FORM BACKEND ROUTE END ===
 
+// === BACKEND ROUTE START ===
 /**
  * Health check for intake routes
  */
@@ -139,6 +127,7 @@ router.get('/health', (req, res) => {
     message: 'Intake routes are operational'
   });
 });
+// === BACKEND ROUTE END ===
 
 /**
  * Generate unique intake ID
