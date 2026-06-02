@@ -3,34 +3,34 @@
   "cleanUrls": true,
   "builds": [
     {
-      "src": "server.js",
+      "src": "public_html/server.js",
       "use": "@vercel/node"
     },
     {
-      "src": "public/**/*",
+      "src": "public_html/public/**/*",
       "use": "@vercel/static"
     }
   ],
   "routes": [
     {
       "src": "/api/(.*)",
-      "dest": "server.js"
+      "dest": "public_html/server.js"
     },
     {
       "src": "/about",
-      "dest": "public/about.html"
+      "dest": "public_html/public/about.html"
     },
     {
       "src": "/glp1-education",
-      "dest": "public/glp1-education.html"
+      "dest": "public_html/public/glp1-education.html"
     },
     {
       "src": "/products",
-      "dest": "public/products.html"
+      "dest": "public_html/public/products.html"
     },
     {
       "src": "/(.*)",
-      "dest": "public/$1"
+      "dest": "public_html/public/$1"
     }
   ]
 }
