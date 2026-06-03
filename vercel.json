@@ -11,26 +11,26 @@
       "use": "@vercel/static"
     }
   ],
-  "routes": [
+  "rewrites": [
     {
-      "src": "/api/(.*)",
-      "dest": "/public_html/server.js"
+      "source": "/api/:path*",
+      "destination": "/public_html/server.js"
     },
     {
-      "src": "/about",
-      "dest": "/public_html/public/about.html"
+      "source": "/about",
+      "destination": "/public_html/public/about.html"
     },
     {
-      "src": "/glp1-education",
-      "dest": "/public_html/public/glp1-education.html"
+      "source": "/glp1-education",
+      "destination": "/public_html/public/glp1-education.html"
     },
     {
-      "src": "/products",
-      "dest": "/public_html/public/products.html"
+      "source": "/products",
+      "destination": "/public_html/public/products.html"
     },
     {
-      "src": "/(.*)",
-      "dest": "/public_html/public/$1"
+      "source": "/:path*",
+      "destination": "/public_html/public/:path*"
     }
   ]
 }
