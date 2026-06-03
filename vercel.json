@@ -1,36 +1,18 @@
 {
   "version": 2,
-  "cleanUrls": true,
   "builds": [
     {
       "src": "public_html/server.js",
-      "use": "@vercel/node"
-    },
-    {
-      "src": "public_html/public/**/*",
-      "use": "@vercel/static"
+      "use": "@vercel/node",
+      "config": {
+        "includeFiles": "public/**"
+      }
     }
   ],
-  "rewrites": [
+  "routes": [
     {
-      "source": "/api/:path*",
-      "destination": "/public_html/server.js"
-    },
-    {
-      "source": "/about",
-      "destination": "/public_html/public/about.html"
-    },
-    {
-      "source": "/glp1-education",
-      "destination": "/public_html/public/glp1-education.html"
-    },
-    {
-      "source": "/products",
-      "destination": "/public_html/public/products.html"
-    },
-    {
-      "source": "/:path*",
-      "destination": "/public_html/public/:path*"
+      "src": "/(.*)",
+      "dest": "/public_html/server.js"
     }
   ]
 }
